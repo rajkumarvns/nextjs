@@ -1,7 +1,8 @@
+"use client"
 import Image from "next/image";
-import { resolve } from "styled-jsx/css";
+import { useState } from "react";
 
-export default async function Home() {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  return <>Home 2</>;
+export default function Home() {
+  const [name, setName] = useState("Raj");
+  return <>Home 2 {name}</>;
 }
