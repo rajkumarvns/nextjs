@@ -7,6 +7,7 @@ export const metadata = {
 const geist = Geist({
   subsets: ["latin"],
   weight: ["400", "700"],
+  display:'swap'
 })
 
 export default function RootLayout({ children }) {
