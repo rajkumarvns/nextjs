@@ -4,7 +4,7 @@ type buttonProps = {
   data: string;
   action: () => void;
 };
-function Button({ data, action }: buttonProps) {
+const Button=({ data, action }: buttonProps)=> {
   return <div>Button</div>;
 }
 
