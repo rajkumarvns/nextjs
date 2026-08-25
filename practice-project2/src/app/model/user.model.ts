@@ -28,5 +28,6 @@ image: {
 
 const userSchema = new mongoose.Schema<Iuser>({}, { timestamps: true });
 
-const User = mongoose.model('model',userSchema);
+// const User = mongoose.models.User || mongoose.model('User',userSchema)
+const User = mongoose.models?.User || mongoose.model('User',userSchema)
 export default User;
