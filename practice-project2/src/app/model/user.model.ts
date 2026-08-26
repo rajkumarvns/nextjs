@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { unique } from "next/dist/build/utils";
+
 interface Iuser {
   _id?: mongoose.Types.ObjectId;
   name: string;
@@ -9,24 +9,28 @@ interface Iuser {
   createdAt?: Date;
   updatedAt?: Date;
 }
-name: {
-  type: String;
-  required: true;
-}
-email: {
-  type: String;
-  required: true;
-  unique: true;
-}
-password: {
-  type: String;
-  required: true;
-}
-image: {
-  type: String;
-}
 
-const userSchema = new mongoose.Schema<Iuser>({}, { timestamps: true });
+const userSchema = new mongoose.Schema<Iuser>(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
 // const User = mongoose.models.User || mongoose.model('User',userSchema)
 const User = mongoose.models?.User || mongoose.model('User',userSchema)
