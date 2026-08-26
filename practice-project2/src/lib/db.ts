@@ -12,7 +12,6 @@ if (!cached) {
 
 const connectDB = async () => {
   if (cached.conn) {
-    console.log("cached DB Connected");
     return cached.conn;
   }
   if (!cached.promise) {
