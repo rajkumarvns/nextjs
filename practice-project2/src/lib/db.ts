@@ -1,4 +1,4 @@
-import { connect } from "http2";
+import mongoose from "mongoose";
 
 let mongodbUrl = process.env.MONGODB_URL;
 if (!mongodbUrl) {
@@ -15,7 +15,7 @@ const connectDB = async () => {
     return cached.conn;
   }
   if (!cached.promise) {
-    connect(mongodbUrl);
+    cached.promise = mongoose.connect(mongodbUrl).then((c) => c.connection);
   }
   try {
     cached.conn = await cached.promise;
