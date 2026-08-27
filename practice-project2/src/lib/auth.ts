@@ -23,26 +23,53 @@ const authOptions: NextAuthOptions = {
           throw new Error("email or password is not found");
         }
         await connectDB();
-        let existUser = await User.findOne({ email });
-        if (!existUser) {
+        let user = await User.findOne({ email });
+        if (!user) {
           throw new Error("User Not Found");
         }
-        let isMatch = await bcrypt.compare(password, existUser.password);
+        let isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
           throw new Error("Incorrect Password");
         }
         return {
-          id: existUser._id,
-          name: existUser.name,
-          email: existUser.email,
-          image: existUser.image,
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          image: user.image,
         };
       },
     }),
   ],
-  callbacks: {},
-  session: {},
-  pages: {},
-  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.image = user.image;
+      }
+      return token;
+    },
+    //user details filled in session storage
+    session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image =
+          typeof token.image === "string" ? token.image : null;
+      }
+      return session;
+    },
+  },
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  },
+  pages: {
+    signIn: "/login",
+    error: "/login",
+  },
+  secret: process.env.NEXT_AUTH_SECRET,
 };
 export default authOptions;
