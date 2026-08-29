@@ -36,7 +36,7 @@ function Register() {
           </div>
           <p className="text-sm text-center mt-1">
             Already Have an Account ?{" "}
-            <span className="text-blue-400">login</span>
+            <span className="text-yellow-400">login</span>
           </p>
           <div className="flex justify-start">
             <button
