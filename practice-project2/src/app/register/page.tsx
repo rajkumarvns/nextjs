@@ -1,13 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 function Register() {
-  
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleRegister = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-4">
       <div className="w-full max-w-md border-2 border-white rounded-2xl p-8 shadow-lg bg-gray-900">
         <h1 className="text-2xl font-semibold text-center mb-6">Register</h1>
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleRegister}>
           <div>
             <label className="mb-1 font-medium">Name</label>
             <input
@@ -15,6 +20,8 @@ function Register() {
               placeholder="Enter Name"
               className="w-full border-b border-white py-2 px-1 bg-gray-900
             text-white outline-none placeholder:-gray-400"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
             />
           </div>
           <div>
@@ -24,6 +31,8 @@ function Register() {
               placeholder="Enter Your Email"
               className="w-full border-b border-white py-2 px-1 bg-gray-900
             text-white outline-none placeholder:-gray-400"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
             />
           </div>
           <div>
@@ -33,6 +42,8 @@ function Register() {
               placeholder="Enter Your Password"
               className="w-full border-b border-white py-2 px-1 bg-gray-900
             text-white outline-none placeholder:-gray-400"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
             />
           </div>
           <p className="text-sm text-center mt-1">
