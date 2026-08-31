@@ -2,6 +2,7 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 function Register() {
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-4">
       <div className="w-full max-w-md border-2 border-white rounded-2xl p-8 shadow-lg bg-gray-900">
