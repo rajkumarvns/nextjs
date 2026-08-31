@@ -1,12 +1,25 @@
 "use client";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
   const handleRegister = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    try {
+      const result = await axios.post("/api/auth/register", {
+        name,
+        email,
+        password,
+      });
+      console.log(result);
+    } catch (error) {
+      console.log("this is error message from register");
+    }
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white px-4">
@@ -46,9 +59,12 @@ function Register() {
               value={password}
             />
           </div>
-          <p className="text-sm text-center mt-1">
+          <p
+            className="text-sm text-center mt-1"
+            onClick={() => router.push("/login")}
+          >
             Already Have an Account ?{" "}
-            <span className="text-yellow-400">login</span>
+            <span className="text-blue-400">login</span>
           </p>
           <div className="flex justify-start">
             <button
