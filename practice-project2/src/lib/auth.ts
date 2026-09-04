@@ -7,7 +7,8 @@ import Google from "next-auth/providers/google";
 
 const authOptions: NextAuthOptions = {
   providers: [
-    //how to login
+
+    //how to login this is the way to login with email and password
     CredentialsProvider({
       name: "Credentials",
       credentials: {
