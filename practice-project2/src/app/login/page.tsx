@@ -22,7 +22,7 @@ function Login() {
       setError("Invalid email or password");
       return;
     }
-
+// login successful, redirect to home page
     router.push("/");
   };
   return (
